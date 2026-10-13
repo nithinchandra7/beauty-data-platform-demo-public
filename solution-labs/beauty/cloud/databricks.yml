@@ -1,0 +1,15 @@
+bundle:
+  name: nithin-beauty-reference
+variables:
+  catalog:
+    default: YOUR_CATALOG
+  schema:
+    default: YOUR_SCHEMA
+targets:
+  sandbox:
+    mode: development
+    workspace:
+      host: https://YOUR_DATABRICKS_HOST
+# Reference configuration, not an active deployment.
+# Create explicit jobs/permissions after validating your warehouse/runtime,
+# source export or SAP BDC contract, storage and catalog access.

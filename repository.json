@@ -1,0 +1,8 @@
+{
+  "project": "beauty",
+  "name": "beauty-data-platform-demo-public",
+  "app": "solution_labs.app:app",
+  "docs": "solution-labs/beauty/docs",
+  "portfolio": "https://nithinchandra.com",
+  "baseline": "764057a"
+}

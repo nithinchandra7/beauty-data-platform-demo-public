@@ -1,0 +1,1112 @@
+{
+  "project": "beauty",
+  "implementation_fingerprint": "5e27f3a7e3cda328921fb8a621611d1d61a54ce050c941d2aa1bc13b4e250fb5",
+  "passed": true,
+  "environment": {
+    "python": "3.12.14",
+    "backend": "SQLite",
+    "cloud_verified": false
+  },
+  "method": "Ten sequential fresh-workspace runs per case. Timing includes workspace creation and scenario execution; nearest-rank p95 is the maximum of ten. Local synthetic measurement only.",
+  "scenarios": [
+    {
+      "scenario": "reconciliation",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 6.274,
+      "p95_ms": 7.222,
+      "output": {
+        "scenario": "clean",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [],
+        "bronze_batches": 1,
+        "trace": {
+          "request_id": "a503fa1d90004228a3d83f15c2b7bdfb",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.455
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.43
+            },
+            {
+              "component": "gold",
+              "label": "Publish reconciled Silver and Gold snapshot atomically",
+              "duration_ms": 0.84
+            }
+          ],
+          "total_ms": 2.279
+        },
+        "run_id": "531d26947c0545e89ee980a27555fcf5",
+        "revision": 2,
+        "role": "finance",
+        "markets": [
+          "US",
+          "GB",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 29757.01,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 53.043,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.2093,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "cash_collected",
+            "value": 14941.68,
+            "unit": "USD",
+            "definition": "Actual receipts applied to invoices as of the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(paid_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "receivables",
+            "value": 14815.33,
+            "unit": "USD",
+            "definition": "Invoice balance minus applied receipts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(outstanding_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "overdue",
+            "value": 5995.37,
+            "unit": "USD",
+            "definition": "Outstanding balances with due date before the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(overdue_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "ratios",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 5.871,
+      "p95_ms": 6.566,
+      "output": {
+        "scenario": "clean",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [],
+        "bronze_batches": 1,
+        "trace": {
+          "request_id": "672fb5b310b04291b5db651f343e55b0",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.47
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.437
+            },
+            {
+              "component": "gold",
+              "label": "Publish reconciled Silver and Gold snapshot atomically",
+              "duration_ms": 0.852
+            }
+          ],
+          "total_ms": 2.454
+        },
+        "run_id": "9a5a05d9a37e4fa597392091e472e590",
+        "revision": 2,
+        "role": "finance",
+        "markets": [
+          "US",
+          "GB",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 29757.01,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 53.043,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.2093,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "cash_collected",
+            "value": 14941.68,
+            "unit": "USD",
+            "definition": "Actual receipts applied to invoices as of the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(paid_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "receivables",
+            "value": 14815.33,
+            "unit": "USD",
+            "definition": "Invoice balance minus applied receipts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(outstanding_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "overdue",
+            "value": 5995.37,
+            "unit": "USD",
+            "definition": "Outstanding balances with due date before the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(overdue_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "bad_batch",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 7.805,
+      "p95_ms": 8.41,
+      "output": {
+        "scenario": "bad_batch",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [
+          "Invoice/line reconciliation failed"
+        ],
+        "bronze_batches": 2,
+        "trace": {
+          "request_id": "5c0a9a4160914091b7d6957e2559f4fd",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.465
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.432
+            }
+          ],
+          "total_ms": 1.446
+        },
+        "run_id": "56acdd648a0145329db49923c58f6c58",
+        "revision": 3,
+        "role": "finance",
+        "markets": [
+          "US",
+          "GB",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 29757.01,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 53.043,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.2093,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "cash_collected",
+            "value": 14941.68,
+            "unit": "USD",
+            "definition": "Actual receipts applied to invoices as of the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(paid_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "receivables",
+            "value": 14815.33,
+            "unit": "USD",
+            "definition": "Invoice balance minus applied receipts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(outstanding_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "overdue",
+            "value": 5995.37,
+            "unit": "USD",
+            "definition": "Outstanding balances with due date before the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(overdue_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "duplicate",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 8.212,
+      "p95_ms": 9.785,
+      "output": {
+        "scenario": "duplicate",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [
+          "Duplicate lines key",
+          "Invoice/line reconciliation failed"
+        ],
+        "bronze_batches": 2,
+        "trace": {
+          "request_id": "fb2167f6743a4f8797a7de87b8eb717e",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.524
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.612
+            }
+          ],
+          "total_ms": 1.777
+        },
+        "run_id": "64f25c72045c4b56a6db87ba9eaa24f2",
+        "revision": 3,
+        "role": "finance",
+        "markets": [
+          "US",
+          "GB",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 29757.01,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 53.043,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.2093,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "cash_collected",
+            "value": 14941.68,
+            "unit": "USD",
+            "definition": "Actual receipts applied to invoices as of the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(paid_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "receivables",
+            "value": 14815.33,
+            "unit": "USD",
+            "definition": "Invoice balance minus applied receipts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(outstanding_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "overdue",
+            "value": 5995.37,
+            "unit": "USD",
+            "definition": "Outstanding balances with due date before the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(overdue_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "currency",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 8.318,
+      "p95_ms": 14.556,
+      "output": {
+        "scenario": "currency",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [
+          "Currency contract requires USD; no implicit FX conversion"
+        ],
+        "bronze_batches": 2,
+        "trace": {
+          "request_id": "caaa2732e4114636beaf1139f40c4847",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.469
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.435
+            }
+          ],
+          "total_ms": 1.463
+        },
+        "run_id": "c9aaac0cdef24a98a4ee71236fdb63af",
+        "revision": 3,
+        "role": "finance",
+        "markets": [
+          "US",
+          "GB",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 29757.01,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 53.043,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.2093,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 120,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "cash_collected",
+            "value": 14941.68,
+            "unit": "USD",
+            "definition": "Actual receipts applied to invoices as of the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(paid_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "receivables",
+            "value": 14815.33,
+            "unit": "USD",
+            "definition": "Invoice balance minus applied receipts",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(outstanding_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "overdue",
+            "value": 5995.37,
+            "unit": "USD",
+            "definition": "Outstanding balances with due date before the demo clock",
+            "markets": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "rows": 60,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(overdue_cents) AS value,COUNT(*) AS rows FROM cashflow WHERE market IN (?,?,?)",
+            "parameters": [
+              "US",
+              "GB",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "authorization",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 5.452,
+      "p95_ms": 6.352,
+      "output": {
+        "scenario": "clean",
+        "publish_version": 1,
+        "source_hash": "e6755df59326966fbebc919b5513718c4e132d88edc117de20628d32c602148c",
+        "quality": [],
+        "bronze_batches": 1,
+        "trace": {
+          "request_id": "0558dd7b547d42e29b417985b08cf189",
+          "stages": [
+            {
+              "component": "bronze",
+              "label": "Receive SAP-shaped synthetic batch",
+              "duration_ms": 0.479
+            },
+            {
+              "component": "quality",
+              "label": "Validate keys, currency and ledger reconciliation",
+              "duration_ms": 0.437
+            },
+            {
+              "component": "gold",
+              "label": "Publish reconciled Silver and Gold snapshot atomically",
+              "duration_ms": 0.848
+            }
+          ],
+          "total_ms": 2.36
+        },
+        "run_id": "64f08ec991cd4074b561ce7d5fa64110",
+        "revision": 2,
+        "role": "commercial",
+        "markets": [
+          "US",
+          "CA"
+        ],
+        "metrics": [
+          {
+            "metric": "net_revenue",
+            "value": 20013.1,
+            "unit": "USD",
+            "definition": "Net invoiced sales after returns and discounts",
+            "markets": [
+              "US",
+              "CA"
+            ],
+            "rows": 80,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT SUM(net_cents) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?)",
+            "parameters": [
+              "US",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "margin_pct",
+            "value": 52.9558,
+            "unit": "%",
+            "definition": "100 \u00d7 total profit / total net revenue",
+            "markets": [
+              "US",
+              "CA"
+            ],
+            "rows": 80,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(profit_cents)/NULLIF(SUM(net_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?)",
+            "parameters": [
+              "US",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          },
+          {
+            "metric": "discount_pct",
+            "value": 6.4094,
+            "unit": "%",
+            "definition": "100 \u00d7 total discounts / gross sales after returns",
+            "markets": [
+              "US",
+              "CA"
+            ],
+            "rows": 80,
+            "publish_version": 1,
+            "semantic_version": "metrics-1.0",
+            "sql": "SELECT 100.0*SUM(discount_cents)/NULLIF(SUM(gross_cents),0) AS value,COUNT(*) AS rows FROM rgm WHERE market IN (?,?)",
+            "parameters": [
+              "US",
+              "CA"
+            ],
+            "currency": "USD",
+            "as_of": "2026-10-12"
+          }
+        ],
+        "synthetic": true,
+        "as_of": "2026-10-12",
+        "counts": {
+          "invoice_lines": 120,
+          "invoices": 60,
+          "documents": 4
+        },
+        "retrieval_mode": "Local lexical count vectors; cloud semantic embeddings are a reference"
+      }
+    },
+    {
+      "scenario": "retrieval_acl",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 5.863,
+      "p95_ms": 6.88,
+      "output": {
+        "answer": "Promotion evaluation compares net revenue after returns and discounts with product cost. Margin is a ratio of aggregate profit to aggregate revenue. Discount efficiency must be reviewed with returns and net units.",
+        "evidence": null,
+        "citations": [
+          {
+            "document_id": "D01",
+            "chunk_id": "D01-01",
+            "title": "Promotion evaluation",
+            "text": "Promotion evaluation compares net revenue after returns and discounts with product cost. Margin is a ratio of aggregate profit to aggregate revenue. Discount efficiency must be reviewed with returns and net units.",
+            "similarity": 0.0925
+          }
+        ],
+        "trace": {
+          "request_id": "a2f7013c0c494884ae80bf52494b500e",
+          "stages": [
+            {
+              "component": "tools",
+              "label": "Authorize identity and resolve allowlisted tool",
+              "duration_ms": 0.021
+            },
+            {
+              "component": "metrics",
+              "label": "Calculate a governed metric using parameterized SQL",
+              "duration_ms": 0.0
+            },
+            {
+              "component": "index",
+              "label": "Filter document permissions before lexical-vector scoring",
+              "duration_ms": 0.039
+            },
+            {
+              "component": "agent",
+              "label": "Render a factual answer from authorized evidence",
+              "duration_ms": 0.0
+            }
+          ],
+          "total_ms": 0.074
+        },
+        "mode": "Deterministic tool router and factual templates; no local LLM"
+      }
+    },
+    {
+      "scenario": "clarification",
+      "runs": 10,
+      "passed": true,
+      "p50_ms": 6.028,
+      "p95_ms": 6.457,
+      "output": {
+        "clarification": "Choose one supported aggregate metric and market. Time/grouping/currency conversions are not implemented; results use USD/% at the displayed as-of date.",
+        "evidence": null,
+        "citations": [],
+        "trace": {
+          "request_id": "e4bffe15ff624e128f9fedf814fa5b23",
+          "stages": [
+            {
+              "component": "tools",
+              "label": "Authorize identity and resolve allowlisted tool",
+              "duration_ms": 0.019
+            }
+          ],
+          "total_ms": 0.028
+        }
+      }
+    }
+  ]
+}

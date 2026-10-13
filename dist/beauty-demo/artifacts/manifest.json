@@ -1,0 +1,26 @@
+{
+  "sha256": {
+    "README.md": "f697f8ad49717b8d6b124bd416aece46aec4572b703d8c7e804523ebfe5a1c62",
+    "adr-01-correctness.md": "53d3fcd79cefd70f3f69502a715f89618f846460dee6f2279843f8bbb2b8d3b1",
+    "adr-02-publication.md": "72e3d160e07868fcf9e33e1e1c592bfd22c6adbdf01822b17a3ee601a0b41658",
+    "adr-03-access.md": "7d3b137e4ce19f1e6432769b1c1c74f3b726a9c6246eb6906a258ccf63cf1b81",
+    "adr-04-ai-boundary.md": "5042df0b642f4af18334d0452e4e770fd582a5aeb1ceb1eb5f23f51f13e15a55",
+    "architecture.md": "526f0e7ef0999f6d5c283f2c35a580176a3593d4263b226f7e86ba996ffb0412",
+    "cloud-architecture.svg": "0414f1b84c3e9716e43a27e6dc3b5adb13f4cb6d3f0bc64db66bf70ab83007fb",
+    "cloud-setup.md": "a40f639253fd23dc4930179cffe98b13f2842f5bd4f359ac02692ae222b8b1fe",
+    "data-model.svg": "913df966c973e3884bc58ad7a6a522c3e76620bb165951fa717b8d1bd90311dc",
+    "evaluation.json": "547891d30e227e1ce3a5fe6fed8f1641dad0032f84ec660fc65c29db0ed3d693",
+    "evaluation.md": "da8866302a9c97d3ecffd0149fc946e97dab09090226ab75099508da09ff344f",
+    "ingestion-flow.svg": "a46f182d6307acb0ce34787dc09ede464ad7802ec3caf92cad702dcd3da21c3e",
+    "local-architecture.svg": "c7ceb87ea1909597f3a4f6df7cc357af0fecd63f16a945716f8a790fd1f3e7f0",
+    "openapi.json": "b9ba8df46ac685c93003d632c1d1be70e66ed8ab31311566ce89b76f3e9516c6",
+    "operations.md": "9c7c5f479f8ea22bc91db170c3b6f2b267e6926f6c5e16505bf3c2d3f9f98c02",
+    "review.md": "8208c9054cfad446cfe9f8bfa110a2f0acd3f8ebe69aef7f42467a0122c6b444",
+    "runtime-sequence.svg": "b7527a4257b920a576a48b49a9f6d287c002e36a53d9403e6724ea9b63a0ad05",
+    "walkthrough-poster.png": "616bb0860835a3231cf998f6d7e0e4a8a59e8dcd7737ff2558389f46875a046d",
+    "walkthrough-script.md": "30724bb14f76917149f0bc89b0aa1f2cc82534dc8ecbbdcb0b7416059c649ef4",
+    "walkthrough.mp4": "5080d6f22c8e4f6f9f1aab80213ca9372f7bd6c1f87d7b1ace126217e6b35bf3",
+    "walkthrough.vtt": "b7177c044d46c1bcd5fff2347d99aed902bb0cb6c669aee63f057eb2da942280"
+  },
+  "scope": "beauty-data-platform-demo-public"
+}

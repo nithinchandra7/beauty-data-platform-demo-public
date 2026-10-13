@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:20.000
+All rows are synthetic USD records. SAP ERP was the original engagement source; this independent demonstration performs no client extraction.
+
+2
+00:00:20.000 --> 00:00:40.000
+Invoice lines reconcile to headers. Receipts aggregate separately at invoice grain, preventing header-line fanout.
+
+3
+00:00:40.000 --> 00:01:00.000
+Receipt cash is distinct from invoiced revenue. Margin and discount ratios use aggregate numerators and denominators.
+
+4
+00:01:00.000 --> 00:01:20.000
+Failed reconciliation, duplicate keys and unsupported currency prevent publication while valid Gold remains available.
+
+5
+00:01:20.000 --> 00:01:40.000
+Finance questions are denied to commercial users before fallback. Document ACLs filter the local lexical-vector search before similarity scoring.
+
+6
+00:01:40.000 --> 00:02:00.000
+The local router and answers are deterministic. Databricks metric views, learned embeddings and model serving are reference replacements requiring cloud validation.
