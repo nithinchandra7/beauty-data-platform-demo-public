@@ -1,6 +1,6 @@
 {
   "project": "beauty",
-  "implementation_fingerprint": "5e27f3a7e3cda328921fb8a621611d1d61a54ce050c941d2aa1bc13b4e250fb5",
+  "implementation_fingerprint": "7f3c7d3ec514cd1bca542dc129f50d71be18baafa2b9050c365a622f53bbe687",
   "passed": true,
   "environment": {
     "python": "3.12.14",
@@ -13,8 +13,8 @@
       "scenario": "reconciliation",
       "runs": 10,
       "passed": true,
-      "p50_ms": 6.274,
-      "p95_ms": 7.222,
+      "p50_ms": 9.255,
+      "p95_ms": 11.125,
       "output": {
         "scenario": "clean",
         "publish_version": 1,
@@ -22,27 +22,27 @@
         "quality": [],
         "bronze_batches": 1,
         "trace": {
-          "request_id": "a503fa1d90004228a3d83f15c2b7bdfb",
+          "request_id": "d4c3cf9c87d041a0888c4e63a6f8e174",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.455
+              "duration_ms": 0.785
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.43
+              "duration_ms": 0.749
             },
             {
               "component": "gold",
               "label": "Publish reconciled Silver and Gold snapshot atomically",
-              "duration_ms": 0.84
+              "duration_ms": 1.518
             }
           ],
-          "total_ms": 2.279
+          "total_ms": 3.926
         },
-        "run_id": "531d26947c0545e89ee980a27555fcf5",
+        "run_id": "de3ee6880312488c944d882a9aa72724",
         "revision": 2,
         "role": "finance",
         "markets": [
@@ -198,8 +198,8 @@
       "scenario": "ratios",
       "runs": 10,
       "passed": true,
-      "p50_ms": 5.871,
-      "p95_ms": 6.566,
+      "p50_ms": 10.496,
+      "p95_ms": 12.11,
       "output": {
         "scenario": "clean",
         "publish_version": 1,
@@ -207,27 +207,27 @@
         "quality": [],
         "bronze_batches": 1,
         "trace": {
-          "request_id": "672fb5b310b04291b5db651f343e55b0",
+          "request_id": "b8d5833638a141fe992ffe9c620f53ae",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.47
+              "duration_ms": 1.052
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.437
+              "duration_ms": 1.029
             },
             {
               "component": "gold",
               "label": "Publish reconciled Silver and Gold snapshot atomically",
-              "duration_ms": 0.852
+              "duration_ms": 1.956
             }
           ],
-          "total_ms": 2.454
+          "total_ms": 5.254
         },
-        "run_id": "9a5a05d9a37e4fa597392091e472e590",
+        "run_id": "55498bdfbdaa49c6a1a7fe95c6c61eef",
         "revision": 2,
         "role": "finance",
         "markets": [
@@ -383,8 +383,8 @@
       "scenario": "bad_batch",
       "runs": 10,
       "passed": true,
-      "p50_ms": 7.805,
-      "p95_ms": 8.41,
+      "p50_ms": 16.005,
+      "p95_ms": 19.499,
       "output": {
         "scenario": "bad_batch",
         "publish_version": 1,
@@ -394,22 +394,22 @@
         ],
         "bronze_batches": 2,
         "trace": {
-          "request_id": "5c0a9a4160914091b7d6957e2559f4fd",
+          "request_id": "8eab0bbcdb7a4d72b52b9928e4172916",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.465
+              "duration_ms": 1.047
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.432
+              "duration_ms": 1.052
             }
           ],
-          "total_ms": 1.446
+          "total_ms": 3.305
         },
-        "run_id": "56acdd648a0145329db49923c58f6c58",
+        "run_id": "693aa0bc65c14f0d977503033c883c27",
         "revision": 3,
         "role": "finance",
         "markets": [
@@ -565,8 +565,8 @@
       "scenario": "duplicate",
       "runs": 10,
       "passed": true,
-      "p50_ms": 8.212,
-      "p95_ms": 9.785,
+      "p50_ms": 13.193,
+      "p95_ms": 15.684,
       "output": {
         "scenario": "duplicate",
         "publish_version": 1,
@@ -577,22 +577,22 @@
         ],
         "bronze_batches": 2,
         "trace": {
-          "request_id": "fb2167f6743a4f8797a7de87b8eb717e",
+          "request_id": "f1957732849d4526bb638b69fad62c01",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.524
+              "duration_ms": 0.769
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.612
+              "duration_ms": 0.754
             }
           ],
-          "total_ms": 1.777
+          "total_ms": 2.354
         },
-        "run_id": "64f25c72045c4b56a6db87ba9eaa24f2",
+        "run_id": "679f1bbf53c44427826a94ef2c0cc7bc",
         "revision": 3,
         "role": "finance",
         "markets": [
@@ -748,8 +748,8 @@
       "scenario": "currency",
       "runs": 10,
       "passed": true,
-      "p50_ms": 8.318,
-      "p95_ms": 14.556,
+      "p50_ms": 11.126,
+      "p95_ms": 11.659,
       "output": {
         "scenario": "currency",
         "publish_version": 1,
@@ -759,22 +759,22 @@
         ],
         "bronze_batches": 2,
         "trace": {
-          "request_id": "caaa2732e4114636beaf1139f40c4847",
+          "request_id": "b83a1a8f052246f0825a9d93483ed68e",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.469
+              "duration_ms": 0.694
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.435
+              "duration_ms": 0.669
             }
           ],
-          "total_ms": 1.463
+          "total_ms": 2.137
         },
-        "run_id": "c9aaac0cdef24a98a4ee71236fdb63af",
+        "run_id": "3e4df8140e874285b242a03f9ab8577e",
         "revision": 3,
         "role": "finance",
         "markets": [
@@ -930,8 +930,8 @@
       "scenario": "authorization",
       "runs": 10,
       "passed": true,
-      "p50_ms": 5.452,
-      "p95_ms": 6.352,
+      "p50_ms": 6.726,
+      "p95_ms": 6.962,
       "output": {
         "scenario": "clean",
         "publish_version": 1,
@@ -939,27 +939,27 @@
         "quality": [],
         "bronze_batches": 1,
         "trace": {
-          "request_id": "0558dd7b547d42e29b417985b08cf189",
+          "request_id": "461b6feff35f4109a8322f33a4f06241",
           "stages": [
             {
               "component": "bronze",
               "label": "Receive SAP-shaped synthetic batch",
-              "duration_ms": 0.479
+              "duration_ms": 0.688
             },
             {
               "component": "quality",
               "label": "Validate keys, currency and ledger reconciliation",
-              "duration_ms": 0.437
+              "duration_ms": 0.674
             },
             {
               "component": "gold",
               "label": "Publish reconciled Silver and Gold snapshot atomically",
-              "duration_ms": 0.848
+              "duration_ms": 1.303
             }
           ],
-          "total_ms": 2.36
+          "total_ms": 3.455
         },
-        "run_id": "64f08ec991cd4074b561ce7d5fa64110",
+        "run_id": "57390255732e40d0958932b9d301dbf8",
         "revision": 2,
         "role": "commercial",
         "markets": [
@@ -1042,8 +1042,8 @@
       "scenario": "retrieval_acl",
       "runs": 10,
       "passed": true,
-      "p50_ms": 5.863,
-      "p95_ms": 6.88,
+      "p50_ms": 6.887,
+      "p95_ms": 7.739,
       "output": {
         "answer": "Promotion evaluation compares net revenue after returns and discounts with product cost. Margin is a ratio of aggregate profit to aggregate revenue. Discount efficiency must be reviewed with returns and net units.",
         "evidence": null,
@@ -1057,12 +1057,12 @@
           }
         ],
         "trace": {
-          "request_id": "a2f7013c0c494884ae80bf52494b500e",
+          "request_id": "804ee154a031470780db898e14aff2a6",
           "stages": [
             {
               "component": "tools",
               "label": "Authorize identity and resolve allowlisted tool",
-              "duration_ms": 0.021
+              "duration_ms": 0.026
             },
             {
               "component": "metrics",
@@ -1072,7 +1072,7 @@
             {
               "component": "index",
               "label": "Filter document permissions before lexical-vector scoring",
-              "duration_ms": 0.039
+              "duration_ms": 0.048
             },
             {
               "component": "agent",
@@ -1080,7 +1080,7 @@
               "duration_ms": 0.0
             }
           ],
-          "total_ms": 0.074
+          "total_ms": 0.094
         },
         "mode": "Deterministic tool router and factual templates; no local LLM"
       }
@@ -1089,22 +1089,22 @@
       "scenario": "clarification",
       "runs": 10,
       "passed": true,
-      "p50_ms": 6.028,
-      "p95_ms": 6.457,
+      "p50_ms": 7.322,
+      "p95_ms": 7.416,
       "output": {
         "clarification": "Choose one supported aggregate metric and market. Time/grouping/currency conversions are not implemented; results use USD/% at the displayed as-of date.",
         "evidence": null,
         "citations": [],
         "trace": {
-          "request_id": "e4bffe15ff624e128f9fedf814fa5b23",
+          "request_id": "6408882f9b024112a0b1f7636abd105b",
           "stages": [
             {
               "component": "tools",
               "label": "Authorize identity and resolve allowlisted tool",
-              "duration_ms": 0.019
+              "duration_ms": 0.028
             }
           ],
-          "total_ms": 0.028
+          "total_ms": 0.044
         }
       }
     }
